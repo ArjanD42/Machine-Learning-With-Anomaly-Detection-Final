@@ -81,3 +81,33 @@ plt.show()
 # Append predicted labels to X_test
 X_test = X_test.assign(pred=y_pred_test)
 print(X_test.head())
+
+#Plotting Results To Test Classifier
+
+p1 = plt.scatter(X_train.x, X_train.y, c="white", s=50, edgecolors="black")
+p2 = plt.scatter(
+    X_test.loc[X_test.pred == 1, ["x"]],
+    X_test.loc[X_test.pred == 1, ["y"]],
+    c="blue", s=50, edgecolors="black",
+)
+p3 = plt.scatter(
+    X_test.loc[X_test.pred == -1, ["x"]],
+    X_test.loc[X_test.pred == -1, ["y"]],
+    c="red", s=50, edgecolors="black",
+)
+
+plt.xlim((-6,6))
+plt.ylim((-6,6))
+plt.legend(
+    [p1, p2, p3],
+    [
+        "training observations", "correctly labeled test observations", "incorrectly labeled test observations"
+    ],
+    loc="lower right"
+)
+plt.show(5)
+
+
+
+
+
